@@ -6,15 +6,6 @@
 	    return support;
 	})();
 
-	// Check versions
-	if(!$) {
-		throw new Error('mobile-slider requires jQuery >= 1.7');
-	}
-
-	if(!$.fn.swipe) {
-		throw new Error('mobile-slider requires jQuery.touchSwipe');
-	}
-
 	// Setup default classes
 	var defaults = {
 		container_selector: ".mobile-slider__items",
@@ -28,6 +19,15 @@
 
 	// Initialise Slider
 	var MobileSlider = function (root, opts) {
+		// Check versions
+		if(!$) {
+			throw new Error('mobile-slider requires jQuery >= 1.7');
+		}
+
+		if(!$.fn.swipe) {
+			throw new Error('mobile-slider requires jQuery.touchSwipe');
+		}
+		
 		this.options = options = opts || defaults;
 		this.$root = $(root);
 		this.$container = this.$root.find(options.container_selector);
@@ -51,16 +51,17 @@
 		this.$prev.on('click', function () {
 			self.goToPrevItem();
 		});
-
+ 
 		this.$container.swipe({
-			swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-		      if(direction=="left") {
-		      	self.goToPrevItem();
-		      } 
-		      if(direction=="right") {
-				self.goToNextItem();
-		      }
-		    }
+			swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+		      	if( direction == "left" ) {
+		      		self.goToPrevItem();
+		      	}
+		      	if( direction == "right" ) {
+		      		self.goToNextItem();
+		      	}
+		    },
+		    allowPageScroll: "auto"
 		});
 
 		this.update();

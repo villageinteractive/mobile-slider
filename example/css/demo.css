@@ -1,0 +1,19 @@
+body {
+	background: white;
+	padding: 0;
+	margin: 0;
+}
+ul {
+	padding-left: 0px;
+	margin: 0;
+	list-style: none;
+}
+a, a:hover, a:active, a:link {
+	color: white;
+	text-decoration: none;
+}
+
+.spacer {
+	height: 400px;
+	text-align: center;
+}

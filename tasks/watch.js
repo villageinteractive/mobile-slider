@@ -1,8 +1,12 @@
 module.exports = {
-  js: {
-    files: ['demo/**/*.*'],
-    options: {
-      livereload: true
-    }
-  }
+	options: {
+		livereload: true
+	},
+	js: {
+		files: ['example/**/*.*']
+	},
+	sass: {
+		files: ['**/*.scss'],
+		tasks: ['sass']
+	}
 };

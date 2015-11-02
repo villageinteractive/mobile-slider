@@ -13,7 +13,8 @@ module.exports = function( grunt ) {
   grunt.loadTasks('tasks');
 
   grunt.registerTask('serve', "Run app locally and  watch for changes", [
-    'connect:demo', 
+    'sass',
+    'connect:example', 
     'watch']);
 };
 

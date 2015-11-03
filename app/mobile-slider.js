@@ -9,12 +9,14 @@
 	// Setup default classes
 	var defaults = {
 		container_selector: ".mobile-slider__items",
-		items_selector: ".mobile-slider__item",
+		item_selector: ".mobile-slider__item",
 		active_class: "mobile-slider__item--active",
 		before_class: "mobile-slider__item--before",
 		after_class: "mobile-slider__item--after",
 		prev_button_selector: ".mobile-slider__prev",
-		next_button_selector: ".mobile-slider__next"
+		next_button_selector: ".mobile-slider__next",
+		click_action: "next",
+		click_link_selector: "a"
 	}
 
 	// Initialise Slider
@@ -28,10 +30,10 @@
 			throw new Error('mobile-slider requires jQuery.touchSwipe');
 		}
 		
-		this.options = options = opts || defaults;
+		this.options = options = $.extend(defaults, opts);
 		this.$root = $(root);
 		this.$container = this.$root.find(options.container_selector);
-		this.$items = this.$root.find(options.items_selector);
+		this.$items = this.$root.find(options.item_selector);
 		this.$next = this.$root.find(options.next_button_selector);
 		this.$prev = this.$root.find(options.prev_button_selector);		
 		
@@ -40,8 +42,23 @@
 
 		var self = this;
 
-		this.$items.on('click', function () {
-			self.goToNextItem();
+		this.$items.each(function (i, item) {
+			if( options.click_action == "link" ) {
+				$(item).on('click', function (event) {
+					var href = $(item).find(options.click_link_selector).attr('href');
+					if( !href ) {
+						self.goToNextItem();
+					} else {
+						window.location = href;	
+					}
+				});	
+			}
+
+			if( options.click_action == "next" ) {
+				$(item).on('click', function (event) {
+					self.goToNextItem();
+				});
+			}			
 		});
 
 		this.$next.on('click', function () {

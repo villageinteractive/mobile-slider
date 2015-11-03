@@ -9,7 +9,7 @@
   display: none; }
 
 .mobile-slider__wrapper {
-  margin: 51.6px auto 12.9px;
+  margin: 25.8px auto 12.9px;
   max-width: 365px;
   max-height: 516px;
   width: 100%;
@@ -19,9 +19,9 @@
   position: relative;
   max-width: 365px;
   max-height: 516px;
-  width: 98%;
+  width: 96%;
   padding-bottom: 141.369863014%;
-  margin: 0 1%;
+  margin: 0 2%;
   -moz-perspective: 100px;
   -webkit-perspective: 100px;
   perspective: 100px;

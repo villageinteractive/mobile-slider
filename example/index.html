@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta content="charset=utf-8">
-  <title>FlexSlider 2</title>
+  <title>Mobile Slider Example</title>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
   <!-- Demo CSS -->
@@ -16,8 +16,8 @@
   <div id="main" class="view-christmas-isotope" role="main"> 
     <div class="view-content mobile-slider">
       <div class="mobile-slider__wrapper">
-        <div class="item-list mobile-slider__items">
-          <div class="views-row mobile-slider__item views-row-1 views-row-odd views-row-first">
+        <ul class="item-list mobile-slider__items">
+          <li class="views-row mobile-slider__item views-row-1 views-row-odd views-row-first">
             <div class="views-field views-field-title mobile-slider__title">
             </div>
             <div class="views-field views-field-field-images mobile-slider__image">
@@ -25,34 +25,38 @@
                 <img typeof="foaf:Image" src="img/xmas-offers-1.png" width="365" height="516" alt="">
               </div>
             </div>
-          </div>
+          </li>
 
-          <div class="views-row mobile-slider__item views-row-2 views-row-even">
+          <li class="views-row mobile-slider__item views-row-2 views-row-even">
             <div class="views-field views-field-title mobile-slider__title">
-              <span class="field-content"><a href="/article/san-pellegrino-restaurant-month-facebook-competition">San Pellegrino Restaurant Month Facebook Competition</a></span>
+              <span class="field-content">
+                <a href="#/image-click-2">San Pellegrino Restaurant Month Facebook Competition</a>
+              </span>
             </div>
             <div class="views-field views-field-field-images mobile-slider__image">
               <div class="field-content">
                 <img typeof="foaf:Image" src="img/xmas-offers-2.png" width="365" height="516" alt="">
               </div>
             </div>
-          </div>
+          </li>
 
-          <div class="views-row mobile-slider__item views-row-3 views-row-odd">
+          <li class="views-row mobile-slider__item views-row-3 views-row-odd">
             <div class="views-field views-field-title mobile-slider__title">
-              <span class="field-content"><a href="/auckland-events/resene-designer-selection-show">Resene Designer Selection Show </a></span>
+              <span class="field-content">
+                <a href="#/image-click-3">Resene Designer Selection Show</a>
+              </span>
             </div>
             <div class="views-field views-field-field-images mobile-slider__image">
               <div class="field-content">
                 <img typeof="foaf:Image" src="img/xmas-offers-3.png" width="365" height="516" alt="">
               </div>
             </div>
-          </div>
+          </li>
 
-          <div class="views-row mobile-slider__item views-row-4 views-row-even">
+          <li class="views-row mobile-slider__item views-row-4 views-row-even">
             <div class="views-field views-field-title mobile-slider__title">
               <span class="field-content">
-                <a href="/arts-and-culture/live-music/james-bay-live">James Bay Live </a>
+                <a href="#/image-click-4">James Bay Live </a>
               </span>
             </div>
             <div class="views-field views-field-field-images mobile-slider__image">
@@ -60,12 +64,12 @@
                 <img typeof="foaf:Image" src="img/xmas-offers-4.png" width="365" height="516" alt="">
               </div>
             </div>
-          </div>
+          </li>
 
-          <div class="views-row mobile-slider__item views-row-4 views-row-even">
+          <li class="views-row mobile-slider__item views-row-4 views-row-even">
             <div class="views-field views-field-title mobile-slider__title">
               <span class="field-content">
-                <a href="/arts-and-culture/live-music/james-bay-live">James Bay Live </a>
+                <a href="#/image-click-5">James Bay Live </a>
               </span>
             </div>
             <div class="views-field views-field-field-images mobile-slider__image">
@@ -73,7 +77,7 @@
                 <img typeof="foaf:Image" src="img/xmas-offers-5.png" width="365" height="516" alt="">
               </div>
             </div>
-          </div>
+          </li>
         </div>  
       </div>
     </div>
@@ -86,7 +90,10 @@
   
   <script>
     $(window).ready(function () {
-      new MobileSlider('.mobile-slider');
+      new MobileSlider('.mobile-slider', {
+        click_action: 'link',
+        click_link_selector: 'a'
+      });
     });
   </script>
 </body>

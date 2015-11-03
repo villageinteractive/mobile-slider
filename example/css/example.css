@@ -15,3 +15,6 @@ a, a:hover, a:active, a:link {
 .mobile-slider {
   background: url("../textures/bg-texture.jpg");
   padding-bottom: 30px; }
+
+.mobile-slider__title {
+  display: none; }

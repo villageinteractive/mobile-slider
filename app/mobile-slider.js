@@ -15,9 +15,11 @@
 		after_class: "mobile-slider__item--after",
 		prev_button_selector: ".mobile-slider__prev",
 		next_button_selector: ".mobile-slider__next",
+		out_left_suffix: "--out-left",
+		out_right_suffix: "--out-right",
 		click_action: "next",
 		click_link_selector: "a"
-	}
+	};
 
 	// Initialise Slider
 	var MobileSlider = function (root, opts) {
@@ -31,18 +33,36 @@
 		}
 		
 		this.options = options = $.extend(defaults, opts);
+		this.options.item_class = options.item_selector.replace('.','');
+		this.options.out_left_class = options.item_class + options.out_left_suffix;
+		this.options.out_right_class = options.item_class + options.out_right_suffix;
+
 		this.$root = $(root);
 		this.$container = this.$root.find(options.container_selector);
 		this.$items = this.$root.find(options.item_selector);
 		this.$next = this.$root.find(options.next_button_selector);
 		this.$prev = this.$root.find(options.prev_button_selector);		
 		
+		try {
+			var duration = $(this.$items[0]).css('transition-duration');
+			this.options.duration = (duration.indexOf("ms")>-1) ? parseFloat(duration) : parseFloat(duration)*1000;
+		} catch (err) {
+			this.options.duration = 250;
+		}
+
 		this.totalItems = this.$items.length;
 		this.activeItemIndex = 0
 
 		var self = this;
 
 		this.$items.each(function (i, item) {
+			// Disable selection on drag.
+			$(item).find('img, a').attr('draggable', false);
+
+			$(item).find('a').on('click', function (event) {
+				event.preventDefault();
+			});
+			
 			if( options.click_action == "link" ) {
 				$(item).on('click', function (event) {
 					var href = $(item).find(options.click_link_selector).attr('href');
@@ -58,7 +78,7 @@
 				$(item).on('click', function (event) {
 					self.goToNextItem();
 				});
-			}			
+			}	
 		});
 
 		this.$next.on('click', function () {
@@ -88,14 +108,14 @@
 		var activeIndex = this.activeItemIndex;
 		this.activeItemIndex = activeIndex == (this.totalItems-1) ? 0 : activeIndex+1;
 		this.update();
-		this.$afterItem.addClass('mobile-slider__item--out-right');
+		this.$afterItem.addClass(options.out_right_class);
 	};
 
 	MobileSlider.prototype.goToPrevItem = function () {
 		var activeIndex = this.activeItemIndex;
 		this.activeItemIndex = activeIndex == 0 ? (this.totalItems-1) : activeIndex-1;
 		this.update();
-		this.$beforeItem.addClass('mobile-slider__item--out-left');
+		this.$beforeItem.addClass(options.out_left_class);
 	};
 
 	MobileSlider.prototype.update = function () {
@@ -114,12 +134,12 @@
 				prevIndex = activeIndex == 0 ? self.totalItems-1 : activeIndex-1,
 
 			$(item)
-				.removeClass(options.active_class)
-				.removeClass(options.after_class)
-				.removeClass(options.before_class)
-				.removeClass(options.before_class + "-2")
-				.removeClass('mobile-slider__item--from-left')
-				.removeClass('mobile-slider__item--from-right');
+				.removeClass([
+					options.active_class,
+					options.after_class,
+					options.before_class,
+					options.before_class + "-2"
+				].join(" "));
 
 			switch(i) {
 				case activeIndex:
@@ -150,13 +170,13 @@
 			.addClass(options.before_class + "-2");
 			
 		this.finishTransition = function () {
-			self.$afterItem.removeClass('mobile-slider__item--out-right');
-			self.$beforeItem.removeClass('mobile-slider__item--out-left');
-			self.finishTransition = null;	
+			var classes = [options.out_left_class, options.out_right_class].join(' ');
+			self.$items.removeClass(classes);
+			self.finishTransition = null;
 		};
 
-		this.finishTimer = setTimeout(self.finishTransition, 300);
+		this.finishTimer = setTimeout(self.finishTransition, options.duration);
 	};
 
 	window.MobileSlider = MobileSlider;
-})(jQuery)
+})(jQuery);

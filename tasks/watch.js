@@ -3,7 +3,7 @@ module.exports = {
 		livereload: true
 	},
 	js: {
-		files: ['example/**/*.*']
+		files: ['example/**/*.*', '!**/*.scss'],
 	},
 	sass: {
 		files: ['**/*.scss'],

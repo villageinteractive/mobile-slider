@@ -1,7 +1,8 @@
 body {
   background: white;
-  padding: 0;
-  margin: 0; }
+  padding: 85px 0 0 0;
+  margin: 0;
+  min-width: 400px; }
 
 ul {
   padding-left: 0px;
@@ -12,9 +13,21 @@ a, a:hover, a:active, a:link {
   color: white;
   text-decoration: none; }
 
-.mobile-slider {
+#main {
+  position: absolute;
+  top: 85px;
+  z-index: 1;
+  width: 100%;
   background: url("../textures/bg-texture.jpg");
-  padding-bottom: 30px; }
+  min-width: 400px; }
+
+#background {
+  width: 400px;
+  margin: -85px auto 0; }
+
+.mobile-slider {
+  padding-bottom: 16px;
+  min-width: 400px; }
 
 .mobile-slider__title {
   display: none; }

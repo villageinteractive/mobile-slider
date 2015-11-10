@@ -1,6 +1,7 @@
-$spark_mobile-slider__height: 516px;
-$spark_mobile-slider__width:  365px;
-$spark_mobile-slider__aspect: ($spark_mobile-slider__height / $spark_mobile-slider__width)*100%;
+$mobile_slider__height: 516px;
+$mobile_slider__width:  365px;
+$mobile_slider__transition_duration: 0.25s; 
+$mobile_slider__aspect: ($mobile_slider__height / $mobile_slider__width)*100%;
 
 .mobile-slider {
 	width: 100%;
@@ -16,19 +17,19 @@ $spark_mobile-slider__aspect: ($spark_mobile-slider__height / $spark_mobile-slid
 }
 
 .mobile-slider__wrapper {
-	margin: ($spark_mobile-slider__height*0.05) auto ($spark_mobile-slider__height)*0.025;
-	max-width: $spark_mobile-slider__width;
-	max-height: $spark_mobile-slider__height;
+	margin: ($mobile_slider__height*0.05) auto ($mobile_slider__height)*0.025;
+	max-width: $mobile_slider__width;
+	max-height: $mobile_slider__height;
 	width: 100%;
 	height: auto;
 }
 
 .mobile-slider__items {
 	position: relative;
-	max-width: $spark_mobile-slider__width;
-	max-height: $spark_mobile-slider__height;
+	max-width: $mobile_slider__width;
+	max-height: $mobile_slider__height;
 	width: 96%;
-	padding-bottom: $spark_mobile-slider__aspect;
+	padding-bottom: $mobile_slider__aspect;
 	margin: 0 2%;
 	
 	-moz-perspective: 100px;
@@ -43,12 +44,12 @@ $spark_mobile-slider__aspect: ($spark_mobile-slider__height / $spark_mobile-slid
 	position: absolute;
 	width: 100%;
 	height: 0;
-	padding-bottom: $spark_mobile-slider__aspect;
+	padding-bottom: $mobile_slider__aspect;
 	left: 0;
 
-	transition: transform 0.25s ease-in-out,
-				transform-origin 0.25s ease-in-out,
-				opacity 0.25s ease-in-out;
+	transition: transform $mobile_slider__transition_duration ease-in-out,
+				transform-origin $mobile_slider__transition_duration ease-in-out,
+				opacity $mobile_slider__transition_duration ease-in-out;
 
 	-webkit-transform: translateX(0) translateZ(-20px) rotateZ(0);
 	transform: translateZ(-14px) translateY(8%) rotateZ(0);
@@ -101,5 +102,11 @@ $spark_mobile-slider__aspect: ($spark_mobile-slider__height / $spark_mobile-slid
 .mobile-slider__image img {
 	display: block;
 	width: 100%;
-	height: $spark_mobile-slider__aspect;
+	height: $mobile_slider__aspect;
+
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
